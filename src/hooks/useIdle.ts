@@ -1,11 +1,11 @@
-import {useEffect, useState} from 'react';
-import {PanResponder} from 'react-native';
+import { useEffect, useState } from 'react';
+import { PanResponder } from 'react-native';
 
 export interface UserInactivityProps {
   timeout: number;
 }
 
-const useIdle = ({timeout}: UserInactivityProps) => {
+const useIdle = ({ timeout }: UserInactivityProps) => {
   const [isIdle, setIsIdle] = useState(false);
 
   /* On screen load non-touch interaction idle timeout */
@@ -32,7 +32,7 @@ const useIdle = ({timeout}: UserInactivityProps) => {
     },
   });
 
-  return {isIdle, panResponder};
+  return { isIdle, panResponder };
 };
 
 export default useIdle;

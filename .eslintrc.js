@@ -1,16 +1,47 @@
 module.exports = {
-  root: true,
-  extends: '@react-native-community',
+  env: {
+    browser: true,
+    es2021: true,
+    jest: true,
+  },
+  extends: ['plugin:react/recommended', 'airbnb'],
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint'],
-  overrides: [
-    {
-      files: ['*.ts', '*.tsx'],
-      rules: {
-        '@typescript-eslint/no-shadow': ['error'],
-        'no-shadow': 'off',
-        'no-undef': 'off',
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 12,
+    sourceType: 'module',
+  },
+  plugins: ['react', '@typescript-eslint'],
+  rules: {
+    'no-use-before-define': 0,
+    '@typescript-eslint/no-use-before-define': ['error'],
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
+    'react/jsx-props-no-spreading': 0,
+    'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
+    'react/function-component-definition': [
+      2,
+      {
+        namedComponents: 'arrow-function',
+        unnamedComponents: 'arrow-function',
+      },
+    ],
+  },
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
     },
-  ],
+  },
 };
