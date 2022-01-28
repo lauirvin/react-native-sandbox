@@ -1,38 +1,44 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState 
+} from 'react';
 import { PanResponder } from 'react-native';
 
 export interface UserInactivityProps {
   timeout: number;
 }
 
+type Timeout = ReturnType<typeof setTimeout>;
+
 const useIdle = ({ timeout }: UserInactivityProps) => {
   const [isIdle, setIsIdle] = useState(false);
 
-  /* On screen load non-touch interaction idle timeout */
-  useEffect(() => {
-    const timer = setTimeout(() => {
+  const timer = useRef<Timeout>();
+
+  const resetInactivityTimeout = useCallback(() => {
+    clearTimeout(timer.current as Timeout);
+    timer.current = setTimeout(() => {
+      /* --------- User is idle --------- */
       setIsIdle(true);
     }, timeout);
+  }, []);
 
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [timeout]);
+  useEffect(() => {
+    resetInactivityTimeout();
+  }, []);
 
-  /* Pass {...panResponder.panHandlers} into the view container */
-  const panResponder = PanResponder.create({
-    onStartShouldSetPanResponderCapture: () => {
-      setIsIdle(false);
+  const panResponder = useRef(
+    PanResponder.create({
+      onStartShouldSetPanResponderCapture: () => {
+        /* --------- User is not idle --------- */
+        setIsIdle(false);
 
-      setTimeout(() => {
-        setIsIdle(true);
-      }, timeout);
+        resetInactivityTimeout();
 
-      return false;
-    },
-  });
+        return false;
+      },
+    }),
+  ).current;
 
-  return { isIdle, panResponder };
+  return { panResponder, isIdle };
 };
 
 export default useIdle;
