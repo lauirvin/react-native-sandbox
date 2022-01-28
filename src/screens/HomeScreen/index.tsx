@@ -44,6 +44,7 @@ const HomeScreen: React.FC<NavigationProps> = ({ navigation }) => (
       <View style={styles.container}>
         {screens.slice(1).map(({ title, name, description }) => (
           <TouchableOpacity
+            key={title}
             onPress={() => navigation.navigate(name)}
             style={styles.screenItemContainer}
           >
