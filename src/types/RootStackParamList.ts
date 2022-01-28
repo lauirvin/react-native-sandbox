@@ -1,4 +1,4 @@
 export type RootStackParamList = {
-  Home: undefined;
-  useIdle: undefined;
+  HomeScreen: undefined;
+  UseIdleScreen: undefined;
 };

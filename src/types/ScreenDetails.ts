@@ -1,6 +1,10 @@
+import { FC } from 'react';
+import { NavigationProps } from './NavigationProps';
 import { RootStackParamList } from './RootStackParamList';
 
 export interface ScreenDetails {
   title: string;
-  screen: keyof RootStackParamList;
+  name: keyof RootStackParamList;
+  component: FC<NavigationProps> | FC;
+  description?: string;
 }

@@ -11,8 +11,15 @@ import UseIdleScreen from '../screens/UseIdleScreen';
 
 export const screens: ScreenDetails[] = [
   {
+    title: '',
+    name: 'HomeScreen',
+    component: HomeScreen,
+  },
+  {
     title: 'useIdle',
-    screen: 'useIdle',
+    name: 'UseIdleScreen',
+    component: UseIdleScreen,
+    description: 'Custom React Hook to track idle activity of user',
   },
 ];
 
@@ -20,9 +27,20 @@ const Stack = createNativeStackNavigator();
 
 const Router = () => (
   <NavigationContainer>
-    <Stack.Navigator>
-      <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="useIdle" component={UseIdleScreen} />
+    <Stack.Navigator
+      screenOptions={{
+        headerShadowVisible: false,
+      }}
+    >
+      {screens.map(({ title, name, component }) => (
+        <Stack.Screen
+          name={name}
+          component={component}
+          options={{
+            title,
+          }}
+        />
+      ))}
     </Stack.Navigator>
   </NavigationContainer>
 );
