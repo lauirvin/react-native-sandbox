@@ -15,6 +15,7 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint'],
   rules: {
+    'react/prop-types': 0,
     'no-use-before-define': 0,
     '@typescript-eslint/no-use-before-define': ['error'],
     'import/extensions': [

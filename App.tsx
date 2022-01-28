@@ -1,6 +1,6 @@
 import React from 'react';
-import RouterContainer from './src/router';
+import Router from './src/router';
 
-const App: React.FC = () => <RouterContainer />;
+const App: React.FC = () => <Router />;
 
 export default App;

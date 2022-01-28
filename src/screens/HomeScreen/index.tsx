@@ -1,21 +1,14 @@
 import React from 'react';
-import { Button, Text, View } from 'react-native';
-import { useNavigation } from 'react-navigation-hooks';
+import { Button, View } from 'react-native';
+import { screens } from '../../router';
+import { NavigationProps } from '../../types/NavigationProps';
 
-const HomeScreen: React.FC = () => {
-  const navigation = useNavigation();
-
-  return (
-    <View>
-      <Text>Home</Text>
-      <Button
-        title="Navigate"
-        onPress={() => navigation.navigate('UseIdleScreen')}
-      >
-        Navigate to UseIdleScreen
-      </Button>
-    </View>
-  );
-};
+const HomeScreen: React.FC<NavigationProps> = ({ navigation }) => (
+  <View>
+    {screens.map(({ title, screen }) => (
+      <Button key={screen} title={title} onPress={() => navigation.navigate(screen)} />
+    ))}
+  </View>
+);
 
 export default HomeScreen;

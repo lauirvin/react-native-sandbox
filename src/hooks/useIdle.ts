@@ -1,5 +1,4 @@
-import { useCallback, useEffect, useRef, useState 
-} from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { PanResponder } from 'react-native';
 
 export interface UserInactivityProps {

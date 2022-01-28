@@ -1,26 +1,30 @@
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-/* ----------------- Screens ----------------- */
+/* ---------------- Types ---------------- */
+import { ScreenDetails } from '../types/ScreenDetails';
+
+/* ---------------- Screens ---------------- */
 import HomeScreen from '../screens/HomeScreen';
 import UseIdleScreen from '../screens/UseIdleScreen';
 
-export interface RootStackParamList {
-  HomeScreen: string;
-  UseIdleScreen: string;
-}
-
-const screens = {
-  HomeScreen: {
-    screen: HomeScreen,
+export const screens: ScreenDetails[] = [
+  {
+    title: 'useIdle',
+    screen: 'useIdle',
   },
-  UseIdleScreen: {
-    screen: UseIdleScreen,
-  },
-};
+];
 
-const Stack = createStackNavigator(screens);
+const Stack = createNativeStackNavigator();
 
-const RouterContainer = createAppContainer(Stack);
+const Router = () => (
+  <NavigationContainer>
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="useIdle" component={UseIdleScreen} />
+    </Stack.Navigator>
+  </NavigationContainer>
+);
 
-export default RouterContainer;
+export default Router;
