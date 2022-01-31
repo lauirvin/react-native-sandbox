@@ -8,6 +8,7 @@ import { ScreenDetails } from '../types/ScreenDetails';
 /* ---------------- Screens ---------------- */
 import HomeScreen from '../screens/HomeScreen';
 import UseIdleScreen from '../screens/UseIdleScreen';
+import ReactHookFormFunnelScreen from '../screens/ReactHookFormFunnelScreen';
 
 export const screens: ScreenDetails[] = [
   {
@@ -20,6 +21,12 @@ export const screens: ScreenDetails[] = [
     name: 'UseIdleScreen',
     component: UseIdleScreen,
     description: 'Custom React Hook to track idle activity of user',
+  },
+  {
+    title: 'React Hook Form Funnel',
+    name: 'ReactHookFormFunnelScreen',
+    component: ReactHookFormFunnelScreen,
+    description: 'Simple form funnel using react-hook-form',
   },
 ];
 
