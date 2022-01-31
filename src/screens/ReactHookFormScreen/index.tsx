@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import InputTextField from '../../components/InputTextField';
 import emailRegex from '../../utils/emailRegex';
 import CTAButton from '../../components/CTAButton';
+import AddressInputField from '../../components/AddressInputField';
 
 const styles = StyleSheet.create({
   container: {
@@ -48,6 +49,25 @@ const ReactHookFormScreen: React.FC = () => {
             message: 'Invalid email address',
           },
         }}
+      />
+      <AddressInputField
+        label="Address"
+        control={control}
+        requiredFieldsErrorMessage="Address is required"
+        fields={[
+          {
+            name: 'address1',
+            rules: { required: { value: true, message: 'Address Line 1 is required' } },
+          },
+          {
+            name: 'address2',
+            rules: { required: { value: true, message: 'Address Line 2 is required' } },
+          },
+          {
+            name: 'address3',
+            // rules: { required: { value: true, message: 'Address Line 3 is required' } },
+          },
+        ]}
       />
       <CTAButton style={styles.ctaButton} label="Submit" onPress={handleSubmit(onSubmit)} />
     </View>

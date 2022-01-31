@@ -1,16 +1,16 @@
 import React, { memo, FC } from 'react';
-import {
-  Control, FieldValues, useController, UseControllerProps,
-} from 'react-hook-form';
-import {
-  StyleSheet, Text, TextInput, View,
-} from 'react-native';
+import { Control, FieldValues, useController, UseControllerProps } from 'react-hook-form';
+import { StyleProp, StyleSheet, Text, TextInput, View } from 'react-native';
 
 interface Props {
   label?: string;
   name: string;
   control: Control<FieldValues, object>;
   rules?: UseControllerProps['rules'];
+  containerStyle?: StyleProp<any>;
+  errorMessage?: string;
+  hideLabel?: true;
+  hideErrorLabel?: true;
 }
 
 const styles = StyleSheet.create({
@@ -48,28 +48,32 @@ const styles = StyleSheet.create({
   },
 });
 
-export const InputTextField: FC<Props> = memo(({
-  label, name, control, rules,
-}) => {
-  const { field, fieldState } = useController({
-    control,
-    defaultValue: '',
-    name,
-    rules,
-  });
+export const InputTextField: FC<Props> = memo(
+  ({ label, name, control, rules, containerStyle, errorMessage, hideLabel, hideErrorLabel }) => {
+    const { field, fieldState } = useController({
+      control,
+      defaultValue: '',
+      name,
+      rules,
+    });
 
-  return (
-    <View style={styles.container}>
-      <Text style={styles.label}>{label}</Text>
-      <TextInput
-        value={field.value}
-        onChangeText={field.onChange}
-        style={{ ...styles.inputField, borderColor: fieldState.error ? '#ea4949' : '#e0e0e0' }}
-      />
-      <Text style={styles.errorLabel}>{fieldState.error ? fieldState.error.message : ''}</Text>
-    </View>
-  );
-});
+    return (
+      <View style={{ ...styles.container, ...containerStyle }}>
+        {!hideLabel && <Text style={styles.label}>{label}</Text>}
+        <TextInput
+          value={field.value}
+          onChangeText={field.onChange}
+          style={{ ...styles.inputField, borderColor: fieldState.error ? '#ea4949' : '#e0e0e0' }}
+        />
+        {!hideErrorLabel && (
+          <Text style={styles.errorLabel}>
+            {fieldState.error ? errorMessage || fieldState.error.message : ''}
+          </Text>
+        )}
+      </View>
+    );
+  },
+);
 
 InputTextField.displayName = 'InputTextField';
 

@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet, Text, TouchableOpacity, View,
-} from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import MainLayout from '../../layout/MainLayout';
 import { screens } from '../../router';

@@ -1,7 +1,5 @@
 import React, { memo, FC } from 'react';
-import {
-  StyleProp, StyleSheet, Text, TouchableOpacity,
-} from 'react-native';
+import { StyleProp, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 interface Props {
   label: string;
