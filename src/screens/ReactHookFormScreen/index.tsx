@@ -8,8 +8,9 @@ import AddressInputField from '../../components/AddressInputField';
 
 const styles = StyleSheet.create({
   container: {
-    padding: 10,
-    backgroundColor: '#fff',
+    paddingHorizontal: 10,
+    paddingVertical: 20,
+    backgroundColor: '#f1f5f7',
     flex: 1,
   },
   ctaButton: {
