@@ -29,12 +29,14 @@ const ReactHookFormScreen: React.FC = () => {
       <InputTextField
         label="First name"
         name="firstName"
+        placeholder="John"
         control={control}
         rules={{ required: { value: true, message: 'First name is required' } }}
       />
       <InputTextField
         label="Last name"
         name="lastName"
+        placeholder="Appleseed"
         control={control}
         rules={{ required: { value: true, message: 'Last name is required' } }}
       />
@@ -42,6 +44,7 @@ const ReactHookFormScreen: React.FC = () => {
         label="Email address"
         name="emailAddress"
         control={control}
+        placeholder="john.appleseed@email.com"
         rules={{
           required: { value: true, message: 'Email address is required' },
           pattern: {
@@ -58,13 +61,16 @@ const ReactHookFormScreen: React.FC = () => {
           {
             name: 'address1',
             rules: { required: { value: true, message: 'Address Line 1 is required' } },
+            props: { placeholder: 'Address Line 1' },
           },
           {
             name: 'address2',
             rules: { required: { value: true, message: 'Address Line 2 is required' } },
+            props: { placeholder: 'Address Line 2' },
           },
           {
             name: 'address3',
+            props: { placeholder: 'Address Line 3' },
             // rules: { required: { value: true, message: 'Address Line 3 is required' } },
           },
         ]}

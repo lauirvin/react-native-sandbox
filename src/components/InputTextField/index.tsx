@@ -2,7 +2,8 @@ import React, { memo, FC } from 'react';
 import { Control, FieldValues, useController, UseControllerProps } from 'react-hook-form';
 import { StyleProp, StyleSheet, Text, TextInput, View } from 'react-native';
 
-interface Props {
+type TextInputProps = TextInput['props'];
+interface Props extends TextInputProps {
   label?: string;
   name: string;
   control: Control<FieldValues, object>;
@@ -49,7 +50,17 @@ const styles = StyleSheet.create({
 });
 
 export const InputTextField: FC<Props> = memo(
-  ({ label, name, control, rules, containerStyle, errorMessage, hideLabel, hideErrorLabel }) => {
+  ({
+    label,
+    name,
+    control,
+    rules,
+    containerStyle,
+    errorMessage,
+    hideLabel,
+    hideErrorLabel,
+    ...restProps
+  }) => {
     const { field, fieldState } = useController({
       control,
       defaultValue: '',
@@ -61,6 +72,7 @@ export const InputTextField: FC<Props> = memo(
       <View style={{ ...styles.container, ...containerStyle }}>
         {!hideLabel && <Text style={styles.label}>{label}</Text>}
         <TextInput
+          {...restProps}
           value={field.value}
           onChangeText={field.onChange}
           style={{ ...styles.inputField, borderColor: fieldState.error ? '#ea4949' : '#e0e0e0' }}

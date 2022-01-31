@@ -1,6 +1,6 @@
 import React, { memo, FC } from 'react';
 import { Control, FieldValues, UseControllerProps, useFormState } from 'react-hook-form';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, TextInput } from 'react-native';
 import InputTextField from '../InputTextField';
 
 interface Props {
@@ -10,6 +10,7 @@ interface Props {
   fields: {
     name: string;
     rules?: UseControllerProps['rules'];
+    props?: TextInput['props'];
   }[];
 }
 
@@ -45,6 +46,7 @@ export const AddressInputField: FC<Props> = memo(
           control={control}
           containerStyle={styles.inputFieldContainer}
           rules={fields[0].rules}
+          {...fields[0].props}
         />
         {fields.slice(1, fields.length - 1).map((field) => (
           <InputTextField
@@ -55,6 +57,7 @@ export const AddressInputField: FC<Props> = memo(
             control={control}
             containerStyle={styles.inputFieldContainer}
             rules={field.rules}
+            {...field.props}
           />
         ))}
         <InputTextField
@@ -63,6 +66,7 @@ export const AddressInputField: FC<Props> = memo(
           control={control}
           rules={fields[fields.length - 1].rules}
           errorMessage={errorMessage}
+          {...fields[fields.length - 1].props}
         />
       </>
     );
