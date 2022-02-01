@@ -13,9 +13,10 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     backgroundColor: '#f1f5f7',
     flex: 1,
+    justifyContent: 'space-between',
   },
   ctaButton: {
-    marginTop: 20,
+    marginVertical: 12.5,
   },
 });
 
