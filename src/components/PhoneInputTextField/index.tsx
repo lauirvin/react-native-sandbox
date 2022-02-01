@@ -13,7 +13,7 @@ interface Props extends TextInputProps {
   containerStyle?: StyleProp<any>;
   hideLabel?: true;
   hideErrorLabel?: true;
-  countriesList: CountriesListItem[];
+  countriesList: Readonly<CountriesListItem[]>;
   invalidNumberMessage: string;
 }
 
