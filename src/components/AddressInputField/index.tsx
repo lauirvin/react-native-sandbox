@@ -32,8 +32,6 @@ export const AddressInputField: FC<Props> = memo(
       errorFields.map((x) => x.type === 'required').length ===
       fields.map((x) => x.rules?.required).filter((x) => x).length;
 
-    console.log(isRequiredFieldsFilled);
-
     /* ------- Return requiredFieldsErrorMessage if all required fields are not filled ------- */
     const errorMessage = isRequiredFieldsFilled
       ? requiredFieldsErrorMessage
