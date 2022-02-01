@@ -112,7 +112,6 @@ export const PhoneInputTextField: FC<Props> = memo(
         {!hideLabel && <Text style={styles.label}>{label}</Text>}
         <PhoneInput
           autoFormat
-          allowZeroAfterCountryCode
           ref={(ref) => {
             phone.current = ref;
           }}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Alert, StyleSheet } from 'react-native';
 import { useForm } from 'react-hook-form';
+import { CountriesListItem } from 'react-native-phone-input';
 import InputTextField from '../../components/InputTextField';
 import emailRegex from '../../utils/emailRegex';
 import CTAButton from '../../components/CTAButton';
@@ -27,7 +28,7 @@ const ReactHookFormScreen: React.FC = () => {
     Alert.alert(JSON.stringify(data));
   };
 
-  const countriesList = [
+  const countriesList: Readonly<CountriesListItem[]> = [
     {
       name: 'Hong Kong (香港)',
       iso2: 'hk',
