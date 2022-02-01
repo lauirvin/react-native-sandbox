@@ -11,7 +11,6 @@ interface Props extends TextInputProps {
   control: Control<FieldValues, object>;
   rules?: UseControllerProps['rules'];
   containerStyle?: StyleProp<any>;
-  errorMessage?: string;
   hideLabel?: true;
   hideErrorLabel?: true;
   countriesList: CountriesListItem[];
@@ -60,7 +59,6 @@ export const PhoneInputTextField: FC<Props> = memo(
     control,
     rules,
     containerStyle,
-    errorMessage,
     hideLabel,
     hideErrorLabel,
     countriesList,
@@ -86,10 +84,10 @@ export const PhoneInputTextField: FC<Props> = memo(
         if (fieldState.error?.type === 'validate') {
           return invalidNumberMessage;
         }
-        return errorMessage || fieldState.error.message;
+        return fieldState.error.message;
       }
       return '';
-    }, [errorMessage, fieldState.error, invalidNumberMessage]);
+    }, [fieldState.error, invalidNumberMessage]);
 
     const onSelectCountry = useCallback(
       (selectedCountry: string) => {

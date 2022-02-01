@@ -1,4 +1,4 @@
-import React, { memo, FC } from 'react';
+import React, { memo, FC, useMemo } from 'react';
 import { Control, FieldValues, useController, UseControllerProps } from 'react-hook-form';
 import { StyleProp, StyleSheet, Text, TextInput, View } from 'react-native';
 
@@ -68,6 +68,18 @@ export const InputTextField: FC<Props> = memo(
       rules,
     });
 
+    const currentErrorMessage = useMemo(() => {
+      if (errorMessage) {
+        return errorMessage;
+      }
+
+      if (fieldState.error) {
+        return fieldState.error.message;
+      }
+
+      return '';
+    }, [errorMessage, fieldState.error]);
+
     return (
       <View style={{ ...styles.container, ...containerStyle }}>
         {!hideLabel && <Text style={styles.label}>{label}</Text>}
@@ -75,13 +87,12 @@ export const InputTextField: FC<Props> = memo(
           {...restProps}
           value={field.value}
           onChangeText={field.onChange}
-          style={{ ...styles.inputField, borderColor: fieldState.error ? '#ea4949' : '#e0e0e0' }}
+          style={{
+            ...styles.inputField,
+            borderColor: currentErrorMessage !== '' ? '#ea4949' : '#e0e0e0',
+          }}
         />
-        {!hideErrorLabel && (
-          <Text style={styles.errorLabel}>
-            {fieldState.error ? errorMessage || fieldState.error.message : ''}
-          </Text>
-        )}
+        {!hideErrorLabel && <Text style={styles.errorLabel}>{currentErrorMessage}</Text>}
       </View>
     );
   },

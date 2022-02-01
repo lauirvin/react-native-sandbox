@@ -103,7 +103,6 @@ const ReactHookFormScreen: React.FC = () => {
           },
         }}
       />
-
       <AddressInputField
         label="Address"
         control={control}
@@ -122,6 +121,9 @@ const ReactHookFormScreen: React.FC = () => {
           {
             name: 'address3',
             props: { placeholder: 'Address Line 3' },
+
+            /* ------- Disabled this field to demo selective required fields ------- */
+
             // rules: { required: { value: true, message: 'Address Line 3 is required' } },
           },
         ]}
