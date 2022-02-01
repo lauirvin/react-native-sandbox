@@ -18,11 +18,11 @@ const useIdle = ({ timeout }: UserInactivityProps) => {
       /* --------- User is idle --------- */
       setIsIdle(true);
     }, timeout);
-  }, []);
+  }, [timeout]);
 
   useEffect(() => {
     resetInactivityTimeout();
-  }, []);
+  }, [resetInactivityTimeout]);
 
   const panResponder = useRef(
     PanResponder.create({
