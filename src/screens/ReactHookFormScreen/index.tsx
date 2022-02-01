@@ -5,6 +5,7 @@ import InputTextField from '../../components/InputTextField';
 import emailRegex from '../../utils/emailRegex';
 import CTAButton from '../../components/CTAButton';
 import AddressInputField from '../../components/AddressInputField';
+import PhoneInputTextField from '../../components/PhoneInputTextField';
 
 const styles = StyleSheet.create({
   container: {
@@ -24,6 +25,37 @@ const ReactHookFormScreen: React.FC = () => {
   const onSubmit = (data: any) => {
     Alert.alert(JSON.stringify(data));
   };
+
+  const countriesList = [
+    {
+      name: 'Hong Kong (香港)',
+      iso2: 'hk',
+      dialCode: '852',
+      priority: 0,
+      areaCodes: null,
+    },
+    {
+      name: 'Macau (澳門)',
+      iso2: 'mo',
+      dialCode: '853',
+      priority: 1,
+      areaCodes: null,
+    },
+    {
+      name: 'China (中国)',
+      iso2: 'cn',
+      dialCode: '86',
+      priority: 2,
+      areaCodes: null,
+    },
+    {
+      name: 'United Kingdom',
+      iso2: 'gb',
+      dialCode: '44',
+      priority: 3,
+      areaCodes: null,
+    },
+  ];
 
   return (
     <View style={styles.container}>
@@ -46,6 +78,7 @@ const ReactHookFormScreen: React.FC = () => {
         name="emailAddress"
         control={control}
         placeholder="john.appleseed@email.com"
+        keyboardType="email-address"
         rules={{
           required: { value: true, message: 'Email address is required' },
           pattern: {
@@ -54,6 +87,23 @@ const ReactHookFormScreen: React.FC = () => {
           },
         }}
       />
+      <PhoneInputTextField
+        label="Mobile No."
+        name="mobileNo"
+        control={control}
+        placeholder="1234 1234"
+        keyboardType="number-pad"
+        countriesList={countriesList}
+        invalidNumberMessage="Invalid mobile number"
+        rules={{
+          required: { value: true, message: 'Mobile No. is required' },
+          pattern: {
+            value: new RegExp(`^\\+(${countriesList.map((x) => x.dialCode).join('|')})`, 'g'), // Check if the phone number startsWith the country code
+            message: 'Invalid country code',
+          },
+        }}
+      />
+
       <AddressInputField
         label="Address"
         control={control}
