@@ -2,11 +2,13 @@ import React from 'react';
 import { View, Alert, StyleSheet } from 'react-native';
 import { useForm } from 'react-hook-form';
 import { CountriesListItem } from 'react-native-phone-input';
-import InputTextField from '../../components/InputTextField';
+import {
+  InputTextField,
+  CTAButton,
+  AddressInputField,
+  PhoneInputTextField,
+} from '../../components';
 import emailRegex from '../../utils/emailRegex';
-import CTAButton from '../../components/CTAButton';
-import AddressInputField from '../../components/AddressInputField';
-import PhoneInputTextField from '../../components/PhoneInputTextField';
 
 const styles = StyleSheet.create({
   container: {
