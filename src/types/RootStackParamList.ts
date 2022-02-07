@@ -3,4 +3,5 @@ export type RootStackParamList = {
   UseIdleScreen: undefined;
   ReactHookFormScreen: undefined;
   ReactHookFormFunnelScreen: undefined;
+  UserViewPortDetectionScreen: undefined;
 };

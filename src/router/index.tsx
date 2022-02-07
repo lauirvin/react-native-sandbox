@@ -10,6 +10,7 @@ import HomeScreen from '../screens/HomeScreen';
 import UseIdleScreen from '../screens/UseIdleScreen';
 import ReactHookFormFunnelScreen from '../screens/ReactHookFormFunnelScreen';
 import ReactHookFormScreen from '../screens/ReactHookFormScreen';
+import UserViewPortDetectionScreen from '../screens/UserViewPortDetectionScreen';
 
 export const screens: ScreenDetails[] = [
   {
@@ -29,11 +30,17 @@ export const screens: ScreenDetails[] = [
     component: ReactHookFormScreen,
     description: 'Simple form using react-hook-form',
   },
+  // {
+  //   title: 'React Hook Form Funnel',
+  //   name: 'ReactHookFormFunnelScreen',
+  //   component: ReactHookFormFunnelScreen,
+  //   description: 'Simple form funnel using react-hook-form',
+  // },
   {
-    title: 'React Hook Form Funnel',
-    name: 'ReactHookFormFunnelScreen',
-    component: ReactHookFormFunnelScreen,
-    description: 'Simple form funnel using react-hook-form',
+    title: 'UserViewPortDetectionScreen',
+    name: 'UserViewPortDetectionScreen',
+    component: UserViewPortDetectionScreen,
+    description: 'Detect percentage of user viewing the screen',
   },
 ];
 
